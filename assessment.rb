@@ -6,7 +6,7 @@ class StringCalculatorRuby
     def add(numbers)
         if numbers.is_a?(String)
             array = numbers.split(",")
-            result =0
+            result = 0
             array.each do |b|
                 result = result+b.to_i
             end
@@ -29,6 +29,7 @@ class StringCalculatorRuby
       
       assert_equal 6, result
     end
+    
     def test_add_method_should_add_the_string_2
         service = StringCalculatorRuby.new
         result = service.add(1)
