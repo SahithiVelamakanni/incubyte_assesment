@@ -2,8 +2,9 @@
 class StringCalculator
     def add(numbers)
       raise ArgumentError, "Input must be a string" unless numbers.is_a?(String)
+      delimeter = /,|\n/
   
-      numbers_array = numbers.split(",").map(&:to_i)
+      numbers_array = numbers.split(delimeter).map(&:to_i)
       handle_negative_numbers(numbers_array)
       numbers_array.inject(0, :+)
     end
@@ -33,6 +34,10 @@ class StringCalculator
       result = @calculator.add("")
       assert_equal 0, result
     end
+    def test_add_method_should_also_pass_new_line_delimiter
+        result = @calculator.add("1,2\n8")
+        assert_equal 11, result
+      end
   
     def test_add_method_should_raise_error_for_non_string_input
       assert_raises(ArgumentError) { @calculator.add(1) }
